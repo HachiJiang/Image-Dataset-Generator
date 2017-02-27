@@ -1,0 +1,139 @@
+body {
+    overflow: hidden;
+}
+
+.image-dataset-generator {
+    height: 620px;
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+    font-size: 2rem;
+}
+
+/* Image Viewer */
+.image-viewer {
+    width: 77%;
+    height: 100%;
+    margin-right: 15px;
+    float: left;
+}
+
+.dataset-container {
+    width: 20%;
+    height: 100%;
+    float: left;
+    text-align: right;
+}
+
+.image-viewer .image-container,
+.dataset-container .dataset-table {
+    width: 100%;
+    height: 100%;
+    border: 2px dashed grey;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.image-viewer .image-container img {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.dataset-container .dataset-table {
+    overflow: auto;
+}
+
+.image-viewer .tips,
+.dataset-container .saveBtn{
+    width: 100%;
+    height: 30px;
+}
+
+.location {
+    display: flex;
+    font-size: 1rem;
+    border-bottom: solid 1px #444;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.remove-location {
+    visibility: hidden;
+    margin-right: 10px;
+    color: #e57373;
+    cursor: pointer;
+}
+
+.location:hover .remove-location {
+    visibility: visible;
+}
+
+.location-info {
+    flex-grow: 1;
+    padding: 10px;
+}
+
+/* AddLocationForm*/
+.add-location-form {
+    position: absolute;
+}
+
+.add-location-form form {
+    display: flex;
+    background-color: #222;
+}
+
+.add-location-form input[type=text] {
+    flex-grow: 1;
+    border-width: 0 0 1px 0;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #333;
+    border-style: none;
+    text-shadow: none;
+    color: #999;
+    letter-spacing: 2px;
+    outline: none;
+}
+
+.add-location-form input[type=text]::-webkit-input-placeholder{
+    color: #666;
+    letter-spacing: 2px;
+}
+
+.add-location-form input[type=text]:focus{
+    background-color: #444;
+}
+
+.add-location-form input[type=submit] {
+    display: block;
+    margin: 10px 10px 10px 0;
+    padding: 10px;
+    background-color: #333;
+    border-radius: 5px;
+    border: none;
+    color: #999;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-shadow: none;
+    text-transform: uppercase;
+}
+
+.add-location-form input[type=submit]:hover{
+    background: #4b71b5;
+    color: #fafafa;
+    cursor: pointer;
+}
+
+/* Marker Layer */
+.marker-layer {
+    position: absolute;
+}
+
+.marker-layer .marker-circle {
+    fill: seagreen;
+    stroke: white;
+    stroke-opacity: .8;
+}
