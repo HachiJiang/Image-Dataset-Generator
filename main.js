@@ -13,6 +13,7 @@ app.on('ready', _ => {
     });
 
     win.loadURL('file://' + __dirname + '/src/index.html');
+    win.setMenu(null);
 
     win.on('closed', _ => {
         win = null;
@@ -27,6 +28,8 @@ ipcMain.on('save-dataset', (evt, locations) => {
             name: 'Excel', extensions: ['xlsx']
         }]
     }, function(filename) {
-        exportToExcel(locations, filename);
+        if (filename) {
+            exportToExcel(locations, filename);
+        }
     });
 });

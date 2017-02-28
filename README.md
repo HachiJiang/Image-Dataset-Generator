@@ -1,4 +1,10 @@
-目的: 便于给image map添加location point坐标信息并生成excel.
+目的: 
+- 构建工具供测试人员给image map添加location point坐标信息并生成dataset.
+- 练手所学工具
+
+思路:
+- electron构建桌面window, 并与本地文件交互
+- react实现页面render及交互逻辑
 
 Steps:
 1. page structure

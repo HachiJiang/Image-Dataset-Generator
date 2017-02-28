@@ -13,15 +13,7 @@ class ImageDatasetGenerator extends Component {
 
         this.state = {
             imgUrl: '',
-            locations: [{
-                name: 'AAA',
-                x: 11,
-                y: 11
-            }, {
-                name: 'BBB',
-                x: 22,
-                y: 22
-            }],
+            locations: [],
             posToAdd: null, // location position that user click to add
             tipContent: null
         };
