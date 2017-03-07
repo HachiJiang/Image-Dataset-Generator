@@ -3,6 +3,9 @@ import { render } from 'react-dom';
 
 import ImageDatasetGenerator from './containers/ImageDatasetGenerator';
 
+import './styles/normalize.css';
+import './styles/index.css';
+
 document.addEventListener('dragover', function (e) {
     e.preventDefault();
     return false;

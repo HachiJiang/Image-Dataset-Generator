@@ -33,15 +33,13 @@ export default class ImageViewer extends Component {
         const imgRect = imgDom && imgDom.getBoundingClientRect();
 
         return (
-            <div className="image-viewer"
+            <div className="image-viewer col"
                  onDrop={ onDropHandler } >
-                <div className="image-container">
-                    <img src={ url }
-                         alt="Drag image here!"
-                         onClick={ url && (e => this._onClick(e, onClickHandler)) }
-                         ref="imgDom"
-                        />
-                </div>
+                <img src={ url }
+                     alt="Drag image here!"
+                     onClick={ url && (e => this._onClick(e, onClickHandler)) }
+                     ref="imgDom"
+                    />
                 {
                     markers && imgRect &&
                     <MarkerLayer markers={ markers }

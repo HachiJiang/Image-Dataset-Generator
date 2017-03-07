@@ -4,7 +4,7 @@
   "description": "",
   "main": "./main.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --watch --optimize-minimize",
     "start": "electron ."
   },
   "keywords": [],
@@ -20,10 +20,12 @@
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-0": "^6.22.0",
+    "css-loader": "^0.26.2",
     "electron-prebuilt": "^1.4.13",
     "excel": "^0.1.7",
     "node-xlsx": "^0.7.4",
     "react-hot-loader": "^1.3.1",
+    "style-loader": "^0.13.2",
     "webpack": "^2.2.1"
   }
 }

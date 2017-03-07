@@ -9,7 +9,7 @@ app.on('ready', _ => {
     let win = new BrowserWindow({
         height: 700, //@TODO: resize?
         width: 1200,
-        resizable: false
+        resizable: true
     });
 
     win.loadURL('file://' + __dirname + '/src/index.html');

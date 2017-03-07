@@ -8,7 +8,7 @@ const DatasetViewer = function(props) {
     const locations = props.locations;
 
     return (
-        <div className="dataset-container">
+        <div className="dataset-container col">
             <div className="dataset-table">
                 {
                     locations.length < 1 ?
@@ -25,7 +25,7 @@ const DatasetViewer = function(props) {
                     ))
                 }
             </div>
-            <button className="savtBtn" onClick={ props.saveDataset }>Export Dataset</button>
+            <button className="saveBtn" onClick={ props.saveDataset }>Export Dataset</button>
         </div>
     );
 };
