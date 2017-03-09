@@ -23,7 +23,7 @@ app.on('ready', _ => {
 ipcMain.on('save-dataset', (evt, locations) => {
     dialog.showSaveDialog({
         title: 'Save dataset...',
-        defaultPath: `${app.getAppPath()}/datasets`,
+        defaultPath: `${app.getPath('desktop')}`,
         filters: [{
             name: 'Excel', extensions: ['xlsx']
         }]

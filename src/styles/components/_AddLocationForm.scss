@@ -1,0 +1,52 @@
+.add-location-form {
+  position: absolute;
+  font-size: 1rem;
+}
+
+.add-location-form form {
+  display: flex;
+  background-color: #222;
+}
+
+.add-location-form input[type=text] {
+  flex-grow: 1;
+  border-width: 0 0 1px 0;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #333;
+  border-style: none;
+  text-shadow: none;
+  color: #999;
+  letter-spacing: 2px;
+  outline: none;
+}
+
+.add-location-form input[type=text]::-webkit-input-placeholder{
+  color: #666;
+  letter-spacing: 2px;
+}
+
+.add-location-form input[type=text]:focus{
+  background-color: #444;
+}
+
+.add-location-form input[type=submit] {
+  display: block;
+  margin: 10px 10px 10px 0;
+  padding: 10px;
+  background-color: #333;
+  border-radius: 5px;
+  border: none;
+  color: #999;
+  letter-spacing: 2px;
+  font-weight: bold;
+  text-shadow: none;
+  text-transform: uppercase;
+}
+
+.add-location-form input[type=submit]:hover{
+  background: #4b71b5;
+  color: #fafafa;
+  cursor: pointer;
+}
