@@ -18,8 +18,8 @@ const DatasetViewer = function(props) {
                             key={ location.name }
                             index={ index }
                             name={ location.name }
-                            x={ location.x }
-                            y={ location.y }
+                            x={ location.pos.x }
+                            y={ location.pos.y }
                             removeLocation={ index => props.removeLocation(index) }
                             />
                     ))
@@ -31,7 +31,12 @@ const DatasetViewer = function(props) {
 };
 
 DatasetViewer.propTypes = {
-    locations: PropTypes.array.isRequired,
+    locations: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            pos: PropTypes.object.isRequired
+        })
+    ).isRequired,
     saveDataset: PropTypes.func.isRequired,
     removeLocation: PropTypes.func.isRequired
 };

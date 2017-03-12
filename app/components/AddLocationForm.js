@@ -3,6 +3,8 @@ import React, { Component, PropTypes } from 'react';
 export default class AddLocationForm extends Component {
     static propTypes = {
         pos: PropTypes.shape({
+            screenX: PropTypes.number.isRequired,
+            screenY: PropTypes.number.isRequired,
             x: PropTypes.number.isRequired,
             y: PropTypes.number.isRequired
         }).isRequired,
@@ -11,14 +13,14 @@ export default class AddLocationForm extends Component {
 
     state = { name: '' };
 
-    onNameChange(e) {
-        const name = e.target.value;
+    onNameChange(name) {
         this.setState({ name });
     }
 
     addLocation(e) {
         if (e) e.preventDefault();
-        this.props.addLocation(this.state.name);
+        const  { x, y } = this.props.pos;
+        this.props.addLocation(this.state.name, { x, y });
         this.setState({ name: '' });
     }
 
@@ -27,17 +29,17 @@ export default class AddLocationForm extends Component {
     }
 
     render() {
-        const { x, y } = this.props.pos;
+        const { screenX, screenY } = this.props.pos;
         const style = {
-            left: x + 'px',
-            top: y + 'px'
+            left: screenX + 'px',
+            top: screenY + 'px'
         };
         return (
             <div className="add-location-form" style={ style }>
-                <form onSubmit={ this.addLocation.bind(this) }>
+                <form onSubmit={ e => this.addLocation(e) }>
                     <input type="text"
                            value={ this.state.name }
-                           onChange={ this.onNameChange.bind(this) }
+                           onChange={ e => this.onNameChange(e.target.value) }
                            placeholder="Location Name"
                            ref={ (input) => { this.nameInput = input; }}
                     />

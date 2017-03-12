@@ -16,8 +16,8 @@ const MarkerLayer = props => (
                 <g className="marker" key={ marker.name } >
                     <circle className="marker-circle"
                             r={ RADIUS }
-                            cx={ marker.screenX - props.styles.left }
-                            cy={ marker.screenY - props.styles.top }
+                            cx={ marker.pos.x * props.styles.width / props.styles.naturalWidth - props.styles.left }
+                            cy={ marker.pos.y * props.styles.height / props.styles.naturalHeight - props.styles.top }
                         />
                     <span className="marker-label">{ marker.name }</span>
                 </g>
@@ -27,17 +27,14 @@ const MarkerLayer = props => (
 );
 
 MarkerLayer.propTypes = {
-    markers: PropTypes.arrayOf(
-        PropTypes.shape({
-            screenX: PropTypes.number.isRequired,
-            screenY: PropTypes.number.isRequired
-        })
-    ).isRequired,
+    markers: PropTypes.array.isRequired,
     styles: PropTypes.shape({
         left: PropTypes.number.isRequired,
         top: PropTypes.number.isRequired,
         width: PropTypes.number.isRequired,
-        height: PropTypes.number.isRequired
+        height: PropTypes.number.isRequired,
+        naturalWidth: PropTypes.number.isRequired,
+        naturalHeight: PropTypes.number.isRequired
     }).isRequired,
     onClick: PropTypes.func.isRequired
 };

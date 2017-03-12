@@ -2,9 +2,9 @@ const webpack = require('webpack');
 
 module.exports = {
     devtool: 'inline-sourcemap',
-    entry: './src/index.js',
+    entry: './index.js',
     output: {
-        filename: './src/bundle.js'
+        filename: './dist/bundle.js'
     },
     module: {
         loaders: [
@@ -16,7 +16,7 @@ module.exports = {
                     'babel-loader'
                 ]
             }, {
-                test: /\.scss$/,
+                test: /\.css$|\.scss$/,
                 loaders: ['style-loader', 'css-loader', 'sass-loader']
             }
         ]

@@ -12,7 +12,7 @@ app.on('ready', _ => {
         resizable: true
     });
 
-    win.loadURL('file://' + __dirname + '/src/index.html');
+    win.loadURL('file://' + __dirname + '/app/index.html');
     win.setMenu(null);
 
     win.on('closed', _ => {
