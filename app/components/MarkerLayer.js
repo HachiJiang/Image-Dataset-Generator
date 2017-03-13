@@ -8,7 +8,7 @@ const MarkerLayer = props => (
          style={ props.style }
          onClick={ props.onClick }>
         {
-            props.markers.map(marker => (
+            props.markers && props.markers.map(marker => (
                 <g className="marker" key={ marker.name } >
                     <circle className="marker-circle"
                             r={ RADIUS }
@@ -32,7 +32,7 @@ MarkerLayer.propTypes = {
             name: PropTypes.string.isRequired,
             pos: PropTypes.object.isRequired
         })
-    ).isRequired,
+    ),
     style: PropTypes.shape({
         left: PropTypes.string.isRequired,
         top: PropTypes.string.isRequired,

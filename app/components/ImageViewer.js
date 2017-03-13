@@ -62,18 +62,16 @@ export default class ImageViewer extends Component {
         const formPos = this.state.formPos;
         const imgDom = this.refs.imgDom;
         let imgRect = imgDom && imgDom.getBoundingClientRect();
-        let onClick = url && (e => this._onClick(e));
 
         return (
             <div className="image-viewer col"
                  onDrop={ e => onDropHandler(e, changeImage) } >
                 <img src={ url }
                      alt="Drag image here!"
-                     onClick={ onClick }
                      ref="imgDom"
                     />
                 {
-                    locations && imgRect &&
+                    imgRect &&
                     <MarkerLayer style={ {
                                     left: '0',
                                     top: '0',
@@ -81,7 +79,7 @@ export default class ImageViewer extends Component {
                                     height: imgRect.height + 'px'
                                  } }
                                  markers={ locations }
-                                 onClick={ onClick }
+                                 onClick={ e => this._onClick(e) }
                         />
                 }
                 <div className="tips">{ tipContent }</div>
