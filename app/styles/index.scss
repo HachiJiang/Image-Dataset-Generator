@@ -30,6 +30,7 @@ body {
 
 /* Image Viewer */
 .image-viewer {
+    position: relative;
     width: calc(100% / 4 * 3);
 }
 

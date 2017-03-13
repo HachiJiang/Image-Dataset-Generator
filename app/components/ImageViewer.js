@@ -39,13 +39,13 @@ export default class ImageViewer extends Component {
 
         const img = this.refs.imgDom;
         const { left, top } = img.getBoundingClientRect();
-        const screenX = e.clientX - left;
+        const screenX = e.clientX - left; // refer to the top left corner of image container
         const screenY = e.clientY - top;
 
         this.setState({
             formPos: {
-                screenX: e.clientX, // refer to window top left corner
-                screenY: e.clientY,
+                screenX: screenX, // refer to window top left corner
+                screenY: screenY,
                 x: parseInt(screenX * img.naturalWidth / img.width),
                 y: parseInt(screenY * img.naturalHeight / img.height)
             }
@@ -62,11 +62,6 @@ export default class ImageViewer extends Component {
         const formPos = this.state.formPos;
         const imgDom = this.refs.imgDom;
         let imgRect = imgDom && imgDom.getBoundingClientRect();
-        if (imgRect) {
-            imgRect.naturalWidth = imgDom.naturalWidth;
-            imgRect.naturalHeight = imgDom.naturalHeight;
-        }
-
         let onClick = url && (e => this._onClick(e));
 
         return (
@@ -79,9 +74,14 @@ export default class ImageViewer extends Component {
                     />
                 {
                     locations && imgRect &&
-                    <MarkerLayer markers={ locations }
+                    <MarkerLayer style={ {
+                                    left: '0',
+                                    top: '0',
+                                    width: imgRect.width + 'px',
+                                    height: imgRect.height + 'px'
+                                 } }
+                                 markers={ locations }
                                  onClick={ onClick }
-                                 styles={ imgRect }
                         />
                 }
                 <div className="tips">{ tipContent }</div>

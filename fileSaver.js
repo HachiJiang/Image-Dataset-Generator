@@ -4,7 +4,7 @@ const xlsx = require("node-xlsx");
 const HEADERS = ['name', 'x', 'y']; // @TODO: no hardcode
 
 module.exports = function exportToExcel(locations, filename) {
-    let data = [HEADERS, ...locations.map(location => HEADERS.map(prop => location[prop]))];
+    let data = [HEADERS, ...locations.map(location => [location.name, location.pos.x, location.pos.y])];
     let buffer = xlsx.build([{
         name: 'My Locations',
         data

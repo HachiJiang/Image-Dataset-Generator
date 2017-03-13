@@ -1,5 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 
+function focusInput(input) {
+    if (input) {
+        input.focus();
+    }
+}
+
 export default class AddLocationForm extends Component {
     static propTypes = {
         pos: PropTypes.shape({
@@ -19,13 +25,12 @@ export default class AddLocationForm extends Component {
 
     addLocation(e) {
         if (e) e.preventDefault();
-        const  { x, y } = this.props.pos;
-        this.props.addLocation(this.state.name, { x, y });
+        this.props.addLocation(this.state.name, this.props.pos);
         this.setState({ name: '' });
     }
 
     componentDidMount() {
-        this.nameInput.focus();
+        focusInput(this.nameInput);
     }
 
     render() {
@@ -34,6 +39,8 @@ export default class AddLocationForm extends Component {
             left: screenX + 'px',
             top: screenY + 'px'
         };
+        focusInput(this.nameInput);
+
         return (
             <div className="add-location-form" style={ style }>
                 <form onSubmit={ e => this.addLocation(e) }>

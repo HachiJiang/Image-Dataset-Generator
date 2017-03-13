@@ -1,25 +1,25 @@
 import React, { PropTypes } from 'react';
 
 const RADIUS = 7;
+const PADDING = 3;
 
 const MarkerLayer = props => (
     <svg className="marker-layer"
-         style={ {
-            left: props.styles.left + "px",
-            top: props.styles.top + "px",
-            width: props.styles.width + "px",
-            height: props.styles.height + "px"
-         } }
+         style={ props.style }
          onClick={ props.onClick }>
         {
             props.markers.map(marker => (
                 <g className="marker" key={ marker.name } >
                     <circle className="marker-circle"
                             r={ RADIUS }
-                            cx={ marker.pos.x * props.styles.width / props.styles.naturalWidth - props.styles.left }
-                            cy={ marker.pos.y * props.styles.height / props.styles.naturalHeight - props.styles.top }
+                            cx={ marker.pos.screenX }
+                            cy={ marker.pos.screenY }
                         />
-                    <span className="marker-label">{ marker.name }</span>
+                    <text className="marker-label"
+                          x={ marker.pos.screenX + RADIUS + PADDING }
+                          y={ marker.pos.screenY + RADIUS }>
+                        { marker.name }
+                    </text>
                 </g>
             ))
         }
@@ -27,14 +27,17 @@ const MarkerLayer = props => (
 );
 
 MarkerLayer.propTypes = {
-    markers: PropTypes.array.isRequired,
-    styles: PropTypes.shape({
-        left: PropTypes.number.isRequired,
-        top: PropTypes.number.isRequired,
-        width: PropTypes.number.isRequired,
-        height: PropTypes.number.isRequired,
-        naturalWidth: PropTypes.number.isRequired,
-        naturalHeight: PropTypes.number.isRequired
+    markers: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            pos: PropTypes.object.isRequired
+        })
+    ).isRequired,
+    style: PropTypes.shape({
+        left: PropTypes.string.isRequired,
+        top: PropTypes.string.isRequired,
+        width: PropTypes.string.isRequired,
+        height: PropTypes.string.isRequired
     }).isRequired,
     onClick: PropTypes.func.isRequired
 };
