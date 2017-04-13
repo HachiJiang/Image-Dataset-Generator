@@ -1,27 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 
+import WindowResizeListener from './WindowResizeListener';
 import AddLocationForm from '../components/AddLocationForm';
 import MarkerLayer from './MarkerLayer';
 
 const IMAGE_FORMAT = ['.jpg', '.jpeg', '.bmp', '.png', '.gif'];
-
-/**
- * Callback for drop image
- * @param {Event} e
- * @param {Function} callback
- */
-function onDropHandler(e, callback) {
-    let imgUrl = '';
-    e.preventDefault();
-    for (let f of e.dataTransfer.files) {
-        console.log('File(s) you dragged here: ', f.path);
-        if (IMAGE_FORMAT.some(format => f.path.endsWith(format))) {
-            imgUrl = f.path;
-            break;
-        }
-    }
-    callback(imgUrl);
-}
 
 export default class ImageViewer extends Component {
     static propTypes = {
@@ -32,7 +15,30 @@ export default class ImageViewer extends Component {
         locations: PropTypes.array
     };
 
-    state = { formPos: null }; // internal state
+    state = {
+        formPos: null,
+        layerWidth: null,
+        layerHeight: null
+    }; // internal state
+
+    /**
+     * Callback for drop image
+     * @param {Event} e
+     * @param {Function} callback
+     */
+    onDropHandler(e, callback) {
+        let imgUrl = '';
+        e.preventDefault();
+        for (let f of e.dataTransfer.files) {
+            console.log('File(s) you dragged here: ', f.path);
+            if (IMAGE_FORMAT.some(format => f.path.endsWith(format))) {
+                imgUrl = f.path;
+                break;
+            }
+        }
+        callback(imgUrl);
+        this.onResizeHandler();
+    }
 
     _onClick(e) {
         e.preventDefault();
@@ -52,6 +58,15 @@ export default class ImageViewer extends Component {
         });
     }
 
+    onResizeHandler() {
+        const imgDom = this.refs.imgDom;
+        this.setState({
+            formPos: null,
+            layerWidth: imgDom.width,
+            layerHeight: imgDom.height
+        })
+    }
+
     _addLocation(name, pos) {
         this.setState({ formPos: null });
         this.props.addLocation(name, pos);
@@ -59,25 +74,27 @@ export default class ImageViewer extends Component {
 
     render() {
         const { url, changeImage, locations, tipContent } = this.props;
-        const formPos = this.state.formPos;
+        const { formPos, layerWidth, layerHeight } = this.state;
         const imgDom = this.refs.imgDom;
-        let imgRect = imgDom && imgDom.getBoundingClientRect();
 
         return (
             <div className="image-viewer col"
-                 onDrop={ e => onDropHandler(e, changeImage) } >
+                 onDrop={ e => this.onDropHandler(e, changeImage) }>
+                <WindowResizeListener onSizeChanged={ e => this.onResizeHandler(e) }/>
                 <img src={ url }
                      alt="Drag image here!"
                      ref="imgDom"
                     />
                 {
-                    imgRect &&
+                    layerWidth && layerHeight &&
                     <MarkerLayer style={ {
                                     left: '0',
                                     top: '0',
-                                    width: imgRect.width + 'px',
-                                    height: imgRect.height + 'px'
+                                    width: layerWidth + 'px',
+                                    height: layerHeight + 'px'
                                  } }
+                                 ratioX={ layerWidth / imgDom.naturalWidth }
+                                 ratioY={ layerHeight / imgDom.naturalHeight }
                                  markers={ locations }
                                  onClick={ e => this._onClick(e) }
                         />

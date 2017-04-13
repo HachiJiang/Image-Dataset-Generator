@@ -25,7 +25,9 @@ export default class AddLocationForm extends Component {
 
     addLocation(e) {
         if (e) e.preventDefault();
-        this.props.addLocation(this.state.name, this.props.pos);
+
+        const { x, y } = this.props.pos;
+        this.props.addLocation(this.state.name, { x, y });
         this.setState({ name: '' });
     }
 

@@ -3,21 +3,21 @@ import React, { PropTypes } from 'react';
 const RADIUS = 7;
 const PADDING = 3;
 
-const MarkerLayer = props => (
+const MarkerLayer = ({ style, onClick, markers, ratioX, ratioY }) => (
     <svg className="marker-layer"
-         style={ props.style }
-         onClick={ props.onClick }>
+         style={ style }
+         onClick={ onClick }>
         {
-            props.markers && props.markers.map(marker => (
+            markers && markers.map(marker => (
                 <g className="marker" key={ marker.name } >
                     <circle className="marker-circle"
                             r={ RADIUS }
-                            cx={ marker.pos.screenX }
-                            cy={ marker.pos.screenY }
+                            cx={ marker.pos.x * ratioX  }
+                            cy={ marker.pos.y * ratioY }
                         />
                     <text className="marker-label"
-                          x={ marker.pos.screenX + RADIUS + PADDING }
-                          y={ marker.pos.screenY + RADIUS }>
+                          x={ marker.pos.x * ratioX + RADIUS + PADDING }
+                          y={ marker.pos.y * ratioY + RADIUS }>
                         { marker.name }
                     </text>
                 </g>
@@ -39,6 +39,8 @@ MarkerLayer.propTypes = {
         width: PropTypes.string.isRequired,
         height: PropTypes.string.isRequired
     }).isRequired,
+    ratioX: PropTypes.number.isRequired,
+    ratioY: PropTypes.number.isRequired,
     onClick: PropTypes.func.isRequired
 };
 
