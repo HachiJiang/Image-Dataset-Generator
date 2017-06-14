@@ -1,12 +1,20 @@
-目的: 
-- 构建工具供测试人员给image map添加location point坐标信息并生成dataset.
-- 练手所学工具
+### Purpose: 
+- Build tool to generate location dataset for image map.
 
-思路:
-- electron构建桌面window, 并与本地文件交互
-- react实现页面render及交互逻辑
+### Solution:
+- Electron + React
 
-Steps:
+### How to Deploy:
+1. open command window and cd to folder "Image-Dataset-Generator/app"
+2. run 'npm install'
+3. run 'npm run build'
+4. cd to folder "Image-Dataset-Generator", run 'npm start'
+
+### How to Package an App
+1. open command window and cd to folder "Image-Dataset-Generator"
+2. run 'npm packag-mac' or 'package-win'. Please refer to [Using Electron-Packager To Package an Electron App](http://mylifeforthecode.com/using-electron-packager-to-package-an-electron-app/) if you meet any problem.
+
+### How to Use:
 1. page structure
 2. drag to load image
 3. click image to add location
