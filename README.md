@@ -4,6 +4,9 @@
 ### Solution:
 - Electron + React
 
+### Interface
+![interface image](https://github.com/HachiJiang/Image-Dataset-Generator/tree/master/images/interface.png)
+
 ### How to Deploy:
 1. open command window and cd to folder "Image-Dataset-Generator/app"
 2. run 'npm install'
