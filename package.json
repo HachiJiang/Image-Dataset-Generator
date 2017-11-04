@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "electron-packager": "^9.1.0",
     "excel": "^0.1.7",
     "node-xlsx": "^0.7.4"
   },
