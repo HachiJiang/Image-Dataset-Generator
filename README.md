@@ -18,11 +18,8 @@
 2. run 'npm run package-mac' or 'package-win'. Please refer to [Using Electron-Packager To Package an Electron App](http://mylifeforthecode.com/using-electron-packager-to-package-an-electron-app/) if you meet any problem.
 
 ### How to Use:
-1. page structure
-2. drag to load image
-3. click image to add location
-4. coordinate conversion
-5. update dataset
-6. remove data row
-7. save to .excel
-8. css split
+1. Drag image to window
+2. Click specific position on image to add location, one by one
+3. You can also remove data row by click `delete` icon
+4. Resize the window, marker position will be update
+5. Save to .excel
